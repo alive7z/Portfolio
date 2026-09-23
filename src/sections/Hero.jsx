@@ -146,7 +146,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto w-full min-w-0 max-w-sm pb-6 lg:max-w-none"
+          className="mx-auto w-full min-w-0 max-w-[21rem] pb-6 lg:justify-self-end lg:max-w-[20rem] xl:max-w-[21rem]"
         >
           <ProfileImage />
         </motion.div>
