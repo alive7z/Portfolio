@@ -20,7 +20,7 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/",
+    href: "https://www.linkedin.com/in/sumit-singh-bagdwal",
     icon: Linkedin,
   },
   {
@@ -62,9 +62,9 @@ export default function Hero() {
 
       <CursorSpotlight />
 
-      <div className="container-x grid items-center gap-16 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="container-x grid min-w-0 items-center gap-16 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr]">
         {/* Left column */}
-        <motion.div variants={stagger} initial="hidden" animate="visible">
+        <motion.div variants={stagger} initial="hidden" animate="visible" className="min-w-0">
           <motion.p
             variants={fadeUp}
             className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-accent-600 dark:text-accent-400"
@@ -97,9 +97,9 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <Button href="#projects" icon={ArrowRight} magnetic>
+            <Button className="w-full sm:w-auto" href="#projects" icon={ArrowRight} magnetic>
               View My Work
             </Button>
             <Button
@@ -108,6 +108,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               icon={FileText}
+              className="w-full sm:w-auto"
             >
               View Resume
             </Button>
@@ -145,7 +146,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto w-full max-w-sm lg:max-w-none"
+          className="mx-auto w-full min-w-0 max-w-sm pb-6 lg:max-w-none"
         >
           <ProfileImage />
         </motion.div>

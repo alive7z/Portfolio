@@ -56,16 +56,17 @@ export default function Contact() {
             collaborative projects, and conversations about technology.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <Button href={`mailto:${EMAIL}`} icon={ArrowRight} magnetic>
+          <motion.div variants={fadeUp} className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button className="w-full sm:w-auto" href={`mailto:${EMAIL}`} icon={ArrowRight} magnetic>
               Say Hello
             </Button>
             <Button
               variant="secondary"
-              href="https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/"
+              href="https://www.linkedin.com/in/sumit-singh-bagdwal"
               target="_blank"
               rel="noopener noreferrer"
               icon={Linkedin}
+              className="w-full sm:w-auto"
             >
               LinkedIn
             </Button>
@@ -75,6 +76,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               icon={Github}
+              className="w-full sm:w-auto"
             >
               GitHub
             </Button>
@@ -86,7 +88,7 @@ export default function Contact() {
               type="button"
               onClick={copyEmail}
               aria-live="polite"
-              className="group inline-flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3 text-sm font-medium text-ink-gray transition-all hover:border-accent-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-accent-600/50 dark:hover:text-white"
+              className="group inline-flex max-w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-ink-gray transition-all hover:border-accent-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-accent-600/50 dark:hover:text-white sm:px-5"
             >
               <Mail className="h-4 w-4 text-accent-600 dark:text-accent-400" aria-hidden="true" />
               {EMAIL}

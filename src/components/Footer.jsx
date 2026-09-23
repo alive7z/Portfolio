@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
 export default function Footer() {
   return (
     <footer className="border-t border-neutral-200 dark:border-[#1e1e1e]">
-      <div className="container-x section-pad flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+      <div className="container-x section-pad flex flex-col items-center justify-between gap-5 py-8 text-center sm:flex-row sm:text-left">
         <p className="text-sm text-ink-gray dark:text-neutral-500">
           Designed &amp; Built by{' '}
           <span className="font-semibold text-ink-900 dark:text-neutral-300">
@@ -11,7 +11,7 @@ export default function Footer() {
           </span>
         </p>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
           <div className="flex items-center gap-1.5">
             <a
               href="https://github.com/alive7z"
@@ -23,7 +23,7 @@ export default function Footer() {
               <Github className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
-              href="https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/"
+              href="https://www.linkedin.com/in/sumit-singh-bagdwal"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

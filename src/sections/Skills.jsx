@@ -21,13 +21,13 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {skills.map((group) => (
             <motion.div
               key={group.title}
               variants={fadeUp}
-              className="card-surface group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-300 hover:shadow-card-hover hover:dark:border-accent-600/40"
+              className="card-surface group h-full rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-300 hover:shadow-card-hover hover:dark:border-accent-600/40"
             >
               <div className="mb-5 flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-colors group-hover:bg-accent-600 group-hover:text-white dark:bg-accent-500/10 dark:text-accent-400 dark:group-hover:bg-accent-600 dark:group-hover:text-white">

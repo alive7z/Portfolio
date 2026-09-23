@@ -144,11 +144,31 @@ export default function ProjectDetailsModal({ project, onClose }) {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-neutral-200 px-6 py-4 sm:px-8 dark:border-[#262626]">
+          <div className="flex flex-wrap items-center gap-3 border-t border-neutral-200 px-6 py-4 sm:px-8 dark:border-[#262626]">
+            {project.live ? (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-glow transition-colors hover:bg-accent-700 sm:w-auto"
+              >
+                View Live <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            ) : null}
+            {project.github ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-ink-900 transition-colors hover:border-accent-300 dark:border-[#303030] dark:text-white dark:hover:border-accent-600/50 sm:w-auto"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" /> GitHub
+              </a>
+            ) : null}
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center gap-2 rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-glow transition-colors hover:bg-accent-700"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-ink-gray transition-colors hover:text-ink-900 dark:text-neutral-400 dark:hover:text-white sm:ml-auto sm:w-auto"
             >
               Close
             </button>

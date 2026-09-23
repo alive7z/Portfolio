@@ -9,7 +9,7 @@ export default function SectionTitle({ eyebrow, title, description, id }) {
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className="mb-12 max-w-2xl"
+      className="mb-12 max-w-2xl md:mb-14"
     >
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold text-accent-600 dark:text-accent-400">

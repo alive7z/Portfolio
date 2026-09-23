@@ -9,7 +9,7 @@ export default function About() {
       <div className="container-x">
         <SectionTitle eyebrow="About" title="About Me" />
 
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left — about text */}
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={viewportOnce}>
             <motion.p variants={fadeUp} className="text-base leading-relaxed text-ink-gray dark:text-neutral-400 sm:text-lg">
@@ -38,7 +38,7 @@ export default function About() {
             viewport={viewportOnce}
             className="space-y-4"
           >
-            <motion.div variants={fadeUp} className="card-surface rounded-2xl p-6">
+            <motion.div variants={fadeUp} className="card-surface rounded-2xl p-5 sm:p-6">
               <div className="mb-4 flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400">
                   <GraduationCap className="h-5 w-5" aria-hidden="true" />
@@ -48,7 +48,7 @@ export default function About() {
                 </h3>
               </div>
               <dl className="space-y-2 text-sm">
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                   <dt className="font-medium text-ink-900 dark:text-neutral-200">
                     B.Tech — Computer Science &amp; Engineering
                   </dt>
@@ -66,7 +66,7 @@ export default function About() {
               </dl>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="card-surface rounded-2xl p-6">
+            <motion.div variants={fadeUp} className="card-surface rounded-2xl p-5 sm:p-6">
               <div className="mb-4 flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400">
                   <Target className="h-5 w-5" aria-hidden="true" />

@@ -7,7 +7,7 @@ const ACTIVITIES = [
   {
     icon: Presentation,
     title: 'Technical Sessions',
-    text: 'Hands-on sessions on development, cloud, and problem solving.',
+    text: 'Hands-on sessions on software development, cloud computing, and data engineering.',
   },
   {
     icon: Code2,
@@ -66,7 +66,8 @@ export default function Leadership() {
               </p>
               <p className="mt-5 leading-relaxed text-ink-gray dark:text-neutral-400">
                 Leading technical learning initiatives and peer activities focused
-                on software development, cloud computing, and problem solving.
+                on software development, cloud computing, data engineering, and
+                problem solving.
               </p>
             </div>
           </motion.article>

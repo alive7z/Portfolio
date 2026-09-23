@@ -1,3 +1,7 @@
+import ibvapDashboard from '../assets/projects/ibvap-dashboard.png'
+import ibvapDashboardLight from '../assets/projects/ibvap-dashboard-light.png'
+import janaSahayaHome from '../assets/projects/civic-issue.png'
+
 export const projects = [
   {
     slug: 'ibvap',
@@ -5,75 +9,97 @@ export const projects = [
     subtitle: 'Intelligent Border Video Analytics Platform',
     role: 'Full-Stack Developer',
     description:
-      'Built a full-stack intelligent surveillance platform for live camera monitoring, alerts, analytics, evidence tracking, and multi-source video ingestion.',
+      'Built and deployed a real-time video analytics platform that detects and tracks people, vehicles, license plates, and faces, then turns object movement into contextual security incidents.',
     tagline:
-      'A full-stack AI surveillance platform that turns live video feeds into real-time intelligence — detecting persons, vehicles, intrusions and abnormal behaviour across camera feeds.',
+      'A full-stack border surveillance platform that converts live video into real-time, explainable intelligence for operators.',
     problem:
-      'Border and perimeter monitoring relies heavily on manual observation, making it slow to react and impractical to scale across many camera feeds.',
+      'Continuous border surveillance is difficult to scale with manual monitoring. Operators need timely, contextual alerts without duplicate events being generated for the same tracked object in every frame.',
     solution:
-      'IBVAP ingests multiple live camera sources and runs on-device AI (YOLO11n with ByteTrack) to detect persons, vehicles and intrusions in real time, then surfaces instant alerts, analytics and evidence through a polished web dashboard.',
+      'IBVAP combines YOLO11, ByteTrack, ANPR/EasyOCR, and YuNet with dynamically configurable surveillance zones, virtual fences, and risk rules. It evaluates movement against flexible threat policies and maintains a single evolving incident per tracked object.',
     architecture:
-      'A React.js dashboard talks to an Express.js API over REST and Socket.IO. A Python vision worker runs YOLO11n detection, ByteTrack tracking, ANPR and virtual fencing, feeding live results back through the same stack. MySQL stores events, users and evidence, while Docker containerizes the services.',
+      'A React.js dashboard connects to Node.js, MySQL, and Redis services deployed with Docker and Nginx on AWS EC2. The FastAPI AI engine runs on an edge device with Apple MPS acceleration and connects securely through Tailscale, with automatic RTSP reconnection and offline handling.',
     technologies: [
       'React.js',
-      'Express.js',
+      'Node.js',
+      'FastAPI',
       'MySQL',
-      'YOLO11n',
+      'Redis',
+      'YOLO11',
+      'ByteTrack',
       'OpenCV',
-      'Socket.IO',
       'Docker',
+      'AWS EC2',
     ],
-    github: 'https://github.com/alive7z/Intelligent-Border-Video-Analytics-Platform.git',
-    image: '/src/assets/projects/ibvap-dashboard.png',
+    github: 'https://github.com/alive7z/Intelligent-Border-Video-Analytics-Platform',
+    live: '',
+    displayUrl: 'ibvap · surveillance command centre',
+    image: ibvapDashboardLight,
+    darkImage: ibvapDashboard,
+    imageAlt: 'IBVAP overview dashboard showing alerts, system health, and live surveillance',
     features: [
-      'Live camera monitoring',
-      'Real-time alerts',
-      'Analytics dashboard',
-      'Evidence management',
       'Person and vehicle detection',
       'ByteTrack object tracking',
-      'ANPR',
-      'Virtual fencing',
-      'Loitering detection',
-      'Authentication',
-      'Role-Based Access Control',
-      'Multi-source video ingestion',
-    ],
-    metrics: [
-      { value: '10.49', suffix: ' FPS', label: 'AI Video Processing' },
-      { value: '91.95', suffix: ' ms', label: 'Average Frame Processing' },
-      { value: '97', suffix: '', label: 'REST API Endpoints' },
-      { value: '19', suffix: '', label: 'Backend Route Modules' },
-    ],
-    metricNote: 'Benchmarked on Apple M4 CPU',
-  },
-  {
-    slug: 'civic-issue',
-    title: 'Civic Issue Reporting Platform',
-    subtitle: 'Community Issue Reporting & Tracking',
-    role: 'Full-Stack Developer',
-    description:
-      'A mobile application allowing citizens to report civic issues using images and GPS-based location data, and track the status of their complaints.',
-    tagline:
-      'An end-to-end civic tech app that lets citizens report issues with photo and GPS proof, then track every complaint to resolution.',
-    problem:
-      'Civic complaints often get lost between phone calls, forms and social media, and citizens rarely get a way to follow up on their report.',
-    solution:
-      'A React Native app that captures an issue with images and GPS location, submits it via a REST API to Express.js, and keeps citizens updated with transparent status tracking.',
-    architecture:
-      'React Native on the client captures images and GPS coordinates, posting them to an Express.js REST API backed by a persistent store. Complaint status flows back to the app so citizens always know where their report stands.',
-    technologies: ['React Native', 'JavaScript', 'Express.js', 'REST APIs', 'GPS'],
-    github: '',
-    image: '/src/assets/projects/civic-issue.png',
-    features: [
-      'GPS-based reporting',
-      'Image uploads',
-      'Issue submission',
-      'Complaint tracking',
-      'Status updates',
-      'REST API integration',
+      'ANPR with EasyOCR',
+      'YuNet face detection',
+      'Configurable surveillance zones',
+      'Virtual fences and risk rules',
+      'Single evolving incidents',
+      'Automatic RTSP reconnection',
+      'Offline handling',
+      'Edge-to-cloud deployment',
     ],
     metrics: null,
     metricNote: '',
+  },
+  {
+    slug: 'janasahaya',
+    title: 'JanaSahaya',
+    subtitle: 'Civic Issue Reporting & Resolution Platform',
+    role: 'Full-Stack Developer',
+    description:
+      'Built a full-stack civic issue platform for citizens, officers, and administrators, with geotagged reporting, issue assignment, SLA monitoring, resolution tracking, analytics, and audit logs.',
+    tagline:
+      'A transparent civic-tech workflow that takes a citizen report from geotagged submission to verified resolution.',
+    problem:
+      'Civic complaints are often scattered across calls, forms, and social media. Citizens lack visibility into progress, while officers lack a shared system for prioritization, ownership, and SLA tracking.',
+    solution:
+      'JanaSahaya provides dedicated workflows for three user roles and uses a 0-100 priority score based on issue age, votes, nearby complaints, and escalation signals. Duplicate detection combines Haversine distance with text and category similarity.',
+    architecture:
+      'The React.js frontend connects to a Node.js and Express.js API backed by a 22-table MySQL database. JWT authentication, RBAC, MySQL transactions, and Socket.IO secure and synchronize the workflow. The frontend is deployed on Vercel, with the Dockerized backend and MySQL on Railway.',
+    technologies: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MySQL',
+      'Socket.IO',
+      'Docker',
+      'Vercel',
+      'Railway',
+    ],
+    github: 'https://github.com/alive7z/JanaSahaya',
+    live: '',
+    displayUrl: 'jana-sahaya.vercel.app',
+    image: janaSahayaHome,
+    darkImage: null,
+    imageAlt: 'JanaSahaya civic issue reporting and resolution platform home page',
+    features: [
+      'Citizen, officer, and admin roles',
+      'Geotagged issue reporting',
+      'Issue assignment and tracking',
+      'SLA monitoring',
+      '0-100 priority scoring',
+      'Duplicate issue detection',
+      'Real-time Socket.IO updates',
+      'Resolution verification',
+      'Analytics and audit logs',
+      'JWT authentication and RBAC',
+    ],
+    metrics: [
+      { value: '3', suffix: '', label: 'User Roles' },
+      { value: '22', suffix: '', label: 'MySQL Tables' },
+      { value: '43', suffix: '', label: 'Automated Tests' },
+      { value: '54', suffix: '', label: 'API Operations' },
+    ],
+    metricNote: 'Implementation metrics verified in the project documentation',
   },
 ]

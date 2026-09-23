@@ -1,4 +1,4 @@
-import { Trophy, Flame, Medal, ShieldCheck } from 'lucide-react'
+import { Trophy, Flame, Cloud, ShieldCheck } from 'lucide-react'
 
 export const achievements = [
   {
@@ -12,9 +12,9 @@ export const achievements = [
     icon: Flame,
   },
   {
-    title: 'LeetCode',
-    description: '100 Days Badge',
-    icon: Medal,
+    title: 'Google Cloud Arcade',
+    description: 'Legend Tier through hands-on cloud labs and technical skill challenges',
+    icon: Cloud,
   },
   {
     title: 'NCC',

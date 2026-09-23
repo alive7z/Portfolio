@@ -20,7 +20,7 @@ const ITEMS = [
   { id: 'skills', label: 'Skills', hint: 'Go to skills', icon: Wrench, action: 'scroll' },
   { id: 'projects', label: 'Projects', hint: 'Go to projects', icon: FolderGit2, action: 'scroll' },
   { id: 'github', label: 'GitHub', hint: 'Open GitHub profile', icon: Github, action: 'external', url: 'https://github.com/alive7z' },
-  { id: 'linkedin', label: 'LinkedIn', hint: 'Open LinkedIn profile', icon: Linkedin, action: 'external', url: 'https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/' },
+  { id: 'linkedin', label: 'LinkedIn', hint: 'Open LinkedIn profile', icon: Linkedin, action: 'external', url: 'https://www.linkedin.com/in/sumit-singh-bagdwal' },
   { id: 'email', label: 'Email', hint: 'Open email', icon: Mail, action: 'external', url: 'mailto:sumitsbagdwal@gmail.com' },
   { id: 'resume', label: 'Resume', hint: 'Open resume (PDF)', icon: FileText, action: 'external', url: '/resume.pdf' },
   { id: 'theme', label: 'Toggle Theme', hint: 'Switch light / dark mode', icon: SunMoon, action: 'theme' },
@@ -154,7 +154,7 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
                         <item.icon className="h-3.5 w-3.5" aria-hidden="true" />
                       </span>
                       <span className="font-medium">{item.label}</span>
-                      <span className="ml-auto text-xs text-ink-gray dark:text-neutral-500">
+                      <span className="ml-auto hidden text-xs text-ink-gray sm:block dark:text-neutral-500">
                         {item.hint}
                       </span>
                       {index === activeIndex ? (

@@ -77,7 +77,7 @@ export default function ProfileImage({ className = '' }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        className="absolute -bottom-6 left-4 flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 shadow-card-hover dark:border-[#2a2a2a] dark:bg-surface-dark sm:-left-8"
+        className="absolute -bottom-6 left-3 flex max-w-[calc(100%-1.5rem)] items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 shadow-card-hover dark:border-[#2a2a2a] dark:bg-surface-dark sm:-left-8 sm:max-w-none"
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400">
           <Code2 className="h-4 w-4" aria-hidden="true" />

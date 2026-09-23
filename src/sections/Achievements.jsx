@@ -11,7 +11,7 @@ export default function Achievements() {
         <SectionTitle
           eyebrow="Achievements"
           title="Achievements"
-          description="Milestones and recognition from hackathons, problem solving, and campus programs."
+          description="Recognition from national hackathons, cloud skill challenges, and campus programs."
         />
 
         <motion.div

@@ -134,7 +134,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
               <Github className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
-              href="https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/"
+              href="https://www.linkedin.com/in/sumit-singh-bagdwal"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn profile"
@@ -224,7 +224,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
                     <Github className="h-5 w-5" aria-hidden="true" />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/sumit-singh-bagdwal-3464ab243/"
+                    href="https://www.linkedin.com/in/sumit-singh-bagdwal"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
