@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { Github, Linkedin, Menu, X, SquareTerminal } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 import Button from './Button'
+import logo from '../assets/logo.svg'
 
 const LINKS = [
   { label: 'Home', id: 'home' },
@@ -86,8 +87,15 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
             className="flex items-center gap-2 rounded-lg font-bold tracking-tight text-ink-900 dark:text-white"
             aria-label="Sumit Singh Bagdwal — Home"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-600 text-sm font-bold text-white">
-              SSB
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-700">
+              <img
+                src={logo}
+                alt=""
+                width={32}
+                height={32}
+                className="h-full w-full object-cover"
+                aria-hidden="true"
+              />
             </span>
             <span className="hidden text-[15px] sm:inline">Sumit Singh Bagdwal</span>
           </a>
