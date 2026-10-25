@@ -28,6 +28,7 @@ export const skills = [
     items: [
       { name: 'C++', icon: Braces },
       { name: 'JavaScript', icon: Code2 },
+      { name: 'Python', icon: Terminal },
       { name: 'SQL', icon: Database },
     ],
   },
@@ -48,6 +49,7 @@ export const skills = [
       { name: 'Node.js', icon: Server },
       { name: 'Express.js', icon: Terminal },
       { name: 'REST APIs', icon: Network },
+      { name: 'FastAPI', icon: Terminal },
       { name: 'WebSockets', icon: Radio },
       { name: 'Socket.IO', icon: MessagesSquare },
     ],
@@ -58,6 +60,7 @@ export const skills = [
     items: [
       { name: 'MySQL', icon: Database },
       { name: 'MongoDB', icon: Database },
+      { name: 'Redis', icon: Database },
     ],
   },
   {
@@ -67,9 +70,11 @@ export const skills = [
       { name: 'Git', icon: GitBranch },
       { name: 'GitHub', icon: Sidebar },
       { name: 'Docker', icon: Container },
+      { name: 'AWS', icon: Cloud },
+      { name: 'Vitest', icon: TestTube },
       { name: 'Postman', icon: TestTube },
       { name: 'Vercel', icon: Cloud },
-      { name: 'Railway', icon: Cloud },
+      { name: 'GitHub Actions', icon: Workflow },
       { name: 'VS Code', icon: Monitor },
     ],
   },
@@ -80,7 +85,9 @@ export const skills = [
       { name: 'Data Structures & Algorithms', icon: Cpu },
       { name: 'Object-Oriented Programming', icon: Layers },
       { name: 'DBMS', icon: Database },
-      { name: 'System Design', icon: Workflow },
+      { name: 'Software Design', icon: Workflow },
+      { name: 'Distributed Systems', icon: Network },
+      { name: 'CI/CD', icon: Workflow },
     ],
   },
 ]

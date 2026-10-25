@@ -23,10 +23,10 @@ export default function About() {
             </motion.p>
 
             <motion.p variants={fadeUp} className="mt-6 text-base leading-relaxed text-ink-gray dark:text-neutral-400 sm:text-lg">
-              Most of my energy goes into hands-on projects — from real-time
-              AI-powered platforms to civic tech apps — where I own the whole
-              stack, from database schema to the UI. I enjoy turning messy,
-              real-world problems into clean, reliable software.
+              I focus on backend engineering and full-stack projects, from
+              payment reliability workflows to real-time video analytics. I
+              enjoy designing APIs and data flows that stay dependable when
+              systems retry, events arrive late, or services go offline.
             </motion.p>
           </motion.div>
 

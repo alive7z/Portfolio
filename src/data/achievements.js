@@ -1,4 +1,4 @@
-import { Trophy, Flame, Cloud, ShieldCheck } from 'lucide-react'
+import { Trophy, Flame, Code2, ShieldCheck, BookOpen, Cloud } from 'lucide-react'
 
 export const achievements = [
   {
@@ -12,8 +12,18 @@ export const achievements = [
     icon: Flame,
   },
   {
-    title: 'Google Cloud Arcade',
-    description: 'Legend Tier through hands-on cloud labs and technical skill challenges',
+    title: '350+ LeetCode Problems',
+    description: 'Consistent practice in data structures and algorithms',
+    icon: Code2,
+  },
+  {
+    title: 'NPTEL Training',
+    description: 'Data Structures and Design',
+    icon: BookOpen,
+  },
+  {
+    title: 'AWS Cloud Training',
+    description: 'Cloud Essentials and Cloud Practitioner Essentials',
     icon: Cloud,
   },
   {

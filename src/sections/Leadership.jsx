@@ -65,9 +65,8 @@ export default function Leadership() {
                 2026 — Present
               </p>
               <p className="mt-5 leading-relaxed text-ink-gray dark:text-neutral-400">
-                Leading technical learning initiatives and peer activities focused
-                on software development, cloud computing, data engineering, and
-                problem solving.
+                Leading peer learning sessions in software development and cloud
+                computing, and helping organize the INNOVATE 1.0 campus ideathon.
               </p>
             </div>
           </motion.article>
