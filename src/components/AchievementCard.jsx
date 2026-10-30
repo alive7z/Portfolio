@@ -20,22 +20,22 @@ export default function AchievementCard({ achievement, index }) {
         />
       ) : null}
       <div className="min-w-0 flex-1">
-      <div className="mb-5 flex items-center justify-between">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-colors group-hover:bg-accent-600 group-hover:text-white dark:bg-accent-500/10 dark:text-accent-400 dark:group-hover:bg-accent-600 dark:group-hover:text-white">
-          <achievement.icon className="h-5 w-5" aria-hidden="true" />
-        </span>
-        {achievement.badge ? (
-          <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
-            {achievement.badge}
+        <div className="mb-5 flex items-center justify-between">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-colors group-hover:bg-accent-600 group-hover:text-white dark:bg-accent-500/10 dark:text-accent-400 dark:group-hover:bg-accent-600 dark:group-hover:text-white">
+            <achievement.icon className="h-5 w-5" aria-hidden="true" />
           </span>
-        ) : null}
-      </div>
-      <h3 className="text-base font-semibold text-ink-900 dark:text-white">
-        {achievement.title}
-      </h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-ink-gray dark:text-neutral-400">
-        {achievement.description}
-      </p>
+          {achievement.badge ? (
+            <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+              {achievement.badge}
+            </span>
+          ) : null}
+        </div>
+        <h3 className="text-base font-semibold text-ink-900 dark:text-white">
+          {achievement.title}
+        </h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-ink-gray dark:text-neutral-400">
+          {achievement.description}
+        </p>
       </div>
     </motion.article>
   )

@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ThemeToggle({ theme, onToggle, size = 'md' }) {
   const isDark = theme === 'dark'
-  const dims = size === 'md' ? 'h-9 w-9' : 'h-8 w-8'
+  const dims = size === 'md' ? 'h-11 w-11' : 'h-10 w-10'
 
   return (
     <button
       type="button"
       onClick={onToggle}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      aria-pressed={isDark}
       className={`relative inline-flex ${dims} items-center justify-center rounded-xl border border-neutral-200 bg-white text-ink-800 transition-colors hover:border-neutral-300 hover:bg-neutral-50 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-200 dark:hover:border-neutral-600 dark:hover:bg-neutral-900`}
     >
       <AnimatePresence mode="wait" initial={false}>

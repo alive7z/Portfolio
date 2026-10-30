@@ -12,13 +12,21 @@ import {
   SunMoon,
   CornerDownLeft,
   Search,
+  Trophy,
+  Users,
+  MessageCircle,
 } from 'lucide-react'
+import { useDialog } from '../hooks/useDialog'
+import { scrollToSection } from '../lib/scroll'
 
 const ITEMS = [
   { id: 'home', label: 'Home', hint: 'Go to home', icon: House, action: 'scroll' },
   { id: 'about', label: 'About', hint: 'Go to about', icon: User, action: 'scroll' },
   { id: 'skills', label: 'Skills', hint: 'Go to skills', icon: Wrench, action: 'scroll' },
   { id: 'projects', label: 'Projects', hint: 'Go to projects', icon: FolderGit2, action: 'scroll' },
+  { id: 'achievements', label: 'Achievements', hint: 'Go to achievements', icon: Trophy, action: 'scroll' },
+  { id: 'leadership', label: 'Leadership', hint: 'Go to leadership', icon: Users, action: 'scroll' },
+  { id: 'contact', label: 'Contact', hint: 'Get in touch', icon: MessageCircle, action: 'scroll' },
   { id: 'github', label: 'GitHub', hint: 'Open GitHub profile', icon: Github, action: 'external', url: 'https://github.com/alive7z' },
   { id: 'linkedin', label: 'LinkedIn', hint: 'Open LinkedIn profile', icon: Linkedin, action: 'external', url: 'https://www.linkedin.com/in/sumit-singh-bagdwal' },
   { id: 'email', label: 'Email', hint: 'Open email', icon: Mail, action: 'external', url: 'mailto:sumitsbagdwal@gmail.com' },
@@ -31,6 +39,8 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const listRef = useRef(null)
   const inputRef = useRef(null)
+  const dialogRef = useRef(null)
+  useDialog(open, onClose, dialogRef, inputRef)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -45,24 +55,14 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
     if (open) {
       setQuery('')
       setActiveIndex(0)
-      setTimeout(() => inputRef.current?.focus(), 40)
     }
   }, [open])
-
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [open, onClose])
 
   useEffect(() => setActiveIndex(0), [query])
 
   const runAction = (item) => {
     if (item.action === 'scroll') {
-      document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })
+      scrollToSection(item.id)
     } else if (item.action === 'theme') {
       onToggleTheme()
     } else {
@@ -72,6 +72,7 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
   }
 
   const onKeyDown = (e) => {
+    if (!filtered.length) return
     if (e.key === 'ArrowDown') {
       e.preventDefault()
       setActiveIndex((i) => (i + 1) % filtered.length)
@@ -98,7 +99,7 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-[80] flex items-start justify-center bg-ink-900/50 px-4 pt-[16vh] backdrop-blur-sm"
+          className="fixed inset-0 z-[80] flex items-start justify-center bg-ink-900/50 px-4 pt-[10dvh] backdrop-blur-sm sm:pt-[16vh]"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
@@ -109,6 +110,7 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: -8 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            ref={dialogRef}
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-card-hover dark:border-[#2a2a2a] dark:bg-[#0D0D0D]"
           >
@@ -122,20 +124,26 @@ export default function CommandPalette({ open, onClose, onToggleTheme }) {
                 onKeyDown={onKeyDown}
                 placeholder="Type a command or search…"
                 aria-label="Search commands"
-                className="h-12 w-full bg-transparent text-sm text-ink-900 outline-none placeholder:text-ink-lightgray dark:text-white dark:placeholder:text-neutral-600"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded={open}
+                aria-controls="command-results"
+                aria-activedescendant={filtered[activeIndex] ? `command-${filtered[activeIndex].id}` : undefined}
+                className="h-14 w-full bg-transparent text-sm text-ink-900 outline-none placeholder:text-ink-lightgray dark:text-white dark:placeholder:text-neutral-600"
               />
-              <kbd className="shrink-0 rounded-md border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 text-[10px] font-medium text-ink-gray dark:border-[#303030] dark:bg-neutral-900 dark:text-neutral-500">
+              <button type="button" onClick={onClose} aria-label="Close search" className="shrink-0 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-1.5 text-[10px] font-medium text-ink-gray dark:border-[#303030] dark:bg-neutral-900 dark:text-neutral-500">
                 ESC
-              </kbd>
+              </button>
             </div>
 
-            <ul ref={listRef} className="max-h-[38vh] overflow-y-auto p-2" role="listbox" aria-label="Commands">
+            <ul id="command-results" ref={listRef} className="max-h-[38vh] overflow-y-auto p-2" role="listbox" aria-label="Commands">
               {filtered.length ? (
                 filtered.map((item, index) => (
-                  <li key={item.id} role="option" aria-selected={index === activeIndex}>
+                  <li id={`command-${item.id}`} key={item.id} role="option" aria-selected={index === activeIndex}>
                     <button
                       type="button"
                       data-index={index}
+                      tabIndex={-1}
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => runAction(item)}
                       className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors ${

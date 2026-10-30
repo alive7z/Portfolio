@@ -7,7 +7,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="section-pad py-20 md:py-28"
+      className="section-pad bg-neutral-50/50 py-16 md:py-24 dark:bg-[#0A0A0A]"
     >
       <div className="container-x">
         <SectionTitle

@@ -1,3 +1,4 @@
+import { scrollToSection } from '../lib/scroll'
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react'
 
 export default function Footer() {
@@ -18,7 +19,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -27,14 +28,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
             >
               <Linkedin className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
               href="mailto:sumitsbagdwal@gmail.com"
               aria-label="Email"
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -46,7 +47,7 @@ export default function Footer() {
             href="#home"
             onClick={(e) => {
               e.preventDefault()
-              document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })
+              scrollToSection('home')
             }}
             className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink-gray transition-colors hover:text-accent-600 dark:text-neutral-500 dark:hover:text-accent-400"
           >

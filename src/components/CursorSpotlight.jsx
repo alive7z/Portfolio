@@ -6,7 +6,7 @@ export default function CursorSpotlight({ className = '', radius = 420 }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const mq = window.matchMedia('(pointer: fine)')
+    const mq = window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)')
     if (!mq.matches) return
 
     const onMove = (e) => {
@@ -17,8 +17,8 @@ export default function CursorSpotlight({ className = '', radius = 420 }) {
       el.style.setProperty('--spot-y', `${y}px`)
     }
 
-    el.addEventListener('mousemove', onMove)
-    return () => el.removeEventListener('mousemove', onMove)
+    el.parentElement?.addEventListener('pointermove', onMove)
+    return () => el.parentElement?.removeEventListener('pointermove', onMove)
   }, [])
 
   return (
@@ -28,7 +28,7 @@ export default function CursorSpotlight({ className = '', radius = 420 }) {
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
       style={{
         background:
-          'radial-gradient(600px circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--spot-color, rgba(37,99,235,0.06)), transparent 60%)',
+          `radial-gradient(${radius}px circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--spot-color, rgba(37,99,235,0.06)), transparent 60%)`,
       }}
     />
   )

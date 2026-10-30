@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 import { useTheme } from './hooks/useTheme'
 import Navbar from './components/Navbar'
 import CommandPalette from './components/CommandPalette'
@@ -27,28 +28,31 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white text-ink-900 antialiased dark:bg-[#050505] dark:text-neutral-100">
-      <Navbar
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        onOpenCommand={() => setPaletteOpen(true)}
-      />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Achievements />
-        <Leadership />
-        <Contact />
-      </main>
-      <Footer />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen bg-white text-ink-900 antialiased dark:bg-[#050505] dark:text-neutral-100">
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <Navbar
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          onOpenCommand={() => setPaletteOpen(true)}
+        />
+        <main id="main-content" tabIndex={-1}>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Achievements />
+          <Leadership />
+          <Contact />
+        </main>
+        <Footer />
 
-      <CommandPalette
-        open={paletteOpen}
-        onClose={() => setPaletteOpen(false)}
-        onToggleTheme={toggleTheme}
-      />
-    </div>
+        <CommandPalette
+          open={paletteOpen}
+          onClose={() => setPaletteOpen(false)}
+          onToggleTheme={toggleTheme}
+        />
+      </div>
+    </MotionConfig>
   )
 }

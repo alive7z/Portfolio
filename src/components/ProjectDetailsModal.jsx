@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Github, ArrowUpRight, CheckCircle2, Compass, Lightbulb, Boxes, Cpu } from 'lucide-react'
+import { useDialog } from '../hooks/useDialog'
 import TechBadge from './TechBadge'
 import MetricCard from './MetricCard'
 
@@ -11,24 +12,13 @@ const SECTIONS = [
 ]
 
 export default function ProjectDetailsModal({ project, onClose }) {
-  useEffect(() => {
-    if (!project) return
-    const onKey = (e) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [project, onClose])
-
-  if (!project) return null
+  const dialogRef = useRef(null)
+  const closeRef = useRef(null)
+  useDialog(Boolean(project), onClose, dialogRef, closeRef)
 
   return (
     <AnimatePresence>
-      <motion.div
+      {project ? <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -44,11 +34,12 @@ export default function ProjectDetailsModal({ project, onClose }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 40, scale: 0.98 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          ref={dialogRef}
           onClick={(e) => e.stopPropagation()}
-          className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-neutral-200 bg-white shadow-card-hover dark:border-[#2a2a2a] dark:bg-[#0D0D0D] sm:rounded-2xl"
+          className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-neutral-200 bg-white shadow-card-hover dark:border-[#2a2a2a] dark:bg-[#0D0D0D] sm:rounded-2xl"
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-4 border-b border-neutral-200 px-6 py-5 sm:px-8 dark:border-[#262626]">
+          <div className="flex shrink-0 items-start justify-between gap-4 border-b border-neutral-200 px-6 py-5 sm:px-8 dark:border-[#262626]">
             <div>
               <h3 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-2xl">
                 {project.title}
@@ -60,15 +51,16 @@ export default function ProjectDetailsModal({ project, onClose }) {
             <button
               type="button"
               onClick={onClose}
+              ref={closeRef}
               aria-label="Close project details"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-neutral-200 text-ink-gray transition-colors hover:border-neutral-300 hover:text-ink-900 dark:border-[#303030] dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-white"
+              className="icon-button"
             >
               <X className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
 
           {/* Scrollable body */}
-          <div className="overflow-y-auto px-6 py-6 sm:px-8">
+          <div className="min-h-0 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8">
             <p className="mb-6 leading-relaxed text-ink-gray dark:text-neutral-400">
               {project.tagline}
             </p>
@@ -144,7 +136,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
           </div>
 
           {/* Footer */}
-          <div className="flex flex-wrap items-center gap-3 border-t border-neutral-200 px-6 py-4 sm:px-8 dark:border-[#262626]">
+          <div className="flex shrink-0 flex-wrap items-center gap-3 border-t border-neutral-200 px-6 py-4 sm:px-8 dark:border-[#262626]">
             {project.live ? (
               <a
                 href={project.live}
@@ -174,7 +166,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
             </button>
           </div>
         </motion.div>
-      </motion.div>
+      </motion.div> : null}
     </AnimatePresence>
   )
 }

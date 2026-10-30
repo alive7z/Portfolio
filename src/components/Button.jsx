@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion'
 
 const VARIANTS = {
   primary: {
@@ -26,13 +26,14 @@ export default function Button({
   onClick,
 }) {
   const ref = useRef(null)
+  const reducedMotion = useReducedMotion()
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
   const springX = useSpring(mx, { stiffness: 180, damping: 16, mass: 0.4 })
   const springY = useSpring(my, { stiffness: 180, damping: 16, mass: 0.4 })
 
   const onMove = (e) => {
-    if (!magnetic || !ref.current) return
+    if (!magnetic || reducedMotion || e.pointerType === 'touch' || !ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const dx = e.clientX - (rect.left + rect.width / 2)
     const dy = e.clientY - (rect.top + rect.height / 2)
@@ -45,7 +46,7 @@ export default function Button({
     my.set(0)
   }
 
-  const classes = `${VARIANTS[variant].base} ${className}`
+  const classes = `min-h-11 ${VARIANTS[variant].base} ${className}`
   const inner = (
     <>
       {children}
@@ -56,9 +57,9 @@ export default function Button({
   const motionProps = {
     ref,
     style: { x: springX, y: springY },
-    onMouseMove: onMove,
-    onMouseLeave: onLeave,
-    whileTap: { scale: 0.97 },
+    onPointerMove: onMove,
+    onPointerLeave: onLeave,
+    whileTap: reducedMotion ? undefined : { scale: 0.98 },
     rel,
   }
 

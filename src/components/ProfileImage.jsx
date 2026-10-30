@@ -16,7 +16,7 @@ export default function ProfileImage({ className = '' }) {
   const rotateY = useTransform(sx, [-0.5, 0.5], [-4, 4])
 
   useEffect(() => {
-    const mq = window.matchMedia('(pointer: fine)')
+    const mq = window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)')
     const update = () => setParallaxEnabled(mq.matches)
     update()
     mq.addEventListener('change', update)
@@ -48,12 +48,12 @@ export default function ProfileImage({ className = '' }) {
       {/* Blue accent shape behind the image */}
       <div
         aria-hidden="true"
-        className="absolute -right-4 -top-4 hidden h-[85%] w-[85%] rounded-2xl bg-accent-500/15 sm:block"
+        className="absolute -right-4 -top-4 hidden h-[85%] w-[85%] rounded-3xl bg-accent-500/15 sm:block"
         style={{ transform: 'rotate(3deg)' }}
       />
       <motion.div
         style={{ rotateX, rotateY }}
-        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-card-hover dark:border-[#262626] dark:bg-surface-dark"
+        className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-card-hover dark:border-[#262626] dark:bg-surface-dark"
       >
         <img
           src={profile}

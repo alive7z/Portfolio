@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
-import { Github, Linkedin, Menu, X, SquareTerminal } from 'lucide-react'
+import { Github, Linkedin, Menu, X, Search } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 import Button from './Button'
 import logo from '../assets/logo.svg'
+import { useDialog } from '../hooks/useDialog'
+import { scrollToSection } from '../lib/scroll'
 
 const LINKS = [
   { label: 'Home', id: 'home' },
@@ -11,6 +13,7 @@ const LINKS = [
   { label: 'Skills', id: 'skills' },
   { label: 'Projects', id: 'projects' },
   { label: 'Achievements', id: 'achievements' },
+  { label: 'Leadership', id: 'leadership' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -18,6 +21,10 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('home')
   const [mobileOpen, setMobileOpen] = useState(false)
+  const navRef = useRef(null)
+  const menuRef = useRef(null)
+  const pendingSection = useRef(null)
+  useDialog(mobileOpen, () => setMobileOpen(false), navRef, menuRef)
 
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
@@ -45,38 +52,40 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [mobileOpen])
+    const desktop = window.matchMedia('(min-width: 1280px)')
+    const closeOnDesktop = () => { if (desktop.matches) setMobileOpen(false) }
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => desktop.removeEventListener('change', closeOnDesktop)
+  }, [])
 
   const scrollTo = (id) => {
-    setMobileOpen(false)
-    document.body.style.overflow = ''
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    })
+    if (mobileOpen) {
+      pendingSection.current = id
+      setMobileOpen(false)
+    } else {
+      scrollToSection(id)
+    }
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX: progress }}
-        className="h-0.5 origin-left bg-accent-600 dark:bg-accent-500"
+        className="absolute inset-x-0 top-0 h-0.5 origin-left bg-accent-600 dark:bg-accent-500"
         aria-hidden="true"
       />
 
       <nav
+        ref={navRef}
         aria-label="Primary"
-        className={`transition-all duration-300 ${
+        className={`container-x overflow-hidden rounded-2xl border bg-white/95 backdrop-blur-xl transition-[box-shadow,border-color] duration-300 dark:bg-[#0F0F0F]/95 ${
           scrolled || mobileOpen
-            ? 'border-b border-neutral-200/80 bg-white/80 backdrop-blur-lg dark:border-[#262626] dark:bg-black/70'
-            : 'border-b border-transparent bg-transparent'
+            ? 'border-neutral-200 shadow-card-hover dark:border-[#303030]'
+            : 'border-neutral-200/70 shadow-card dark:border-[#262626]'
         }`}
       >
-        <div className="container-x flex h-16 items-center justify-between px-5 sm:px-8">
+        <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-5">
           {/* Logo */}
           <a
             href="#home"
@@ -101,7 +110,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-0.5 xl:flex">
             {LINKS.map((link) => (
               <li key={link.id}>
                 <a
@@ -112,19 +121,12 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
                   }}
                   className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                     active === link.id
-                      ? 'text-accent-600 dark:text-accent-400'
+                      ? 'bg-accent-50 text-accent-600 dark:bg-accent-500/10 dark:text-accent-400'
                       : 'text-ink-gray hover:text-ink-900 dark:text-neutral-400 dark:hover:text-white'
                   }`}
                   aria-current={active === link.id ? 'true' : undefined}
                 >
                   {link.label}
-                  {active === link.id ? (
-                    <motion.span
-                      layoutId="nav-active"
-                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-accent-600 dark:bg-accent-400"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  ) : null}
                 </a>
               </li>
             ))}
@@ -132,25 +134,6 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
-            <a
-              href="https://github.com/alive7z"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              className="hidden h-9 w-9 items-center justify-center rounded-xl border border-neutral-200 bg-white text-ink-gray transition-colors hover:border-neutral-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-white sm:flex"
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/sumit-singh-bagdwal"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              className="hidden h-9 w-9 items-center justify-center rounded-xl border border-neutral-200 bg-white text-ink-gray transition-colors hover:border-neutral-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-white sm:flex"
-            >
-              <Linkedin className="h-4 w-4" aria-hidden="true" />
-            </a>
-
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
 
             <Button
@@ -168,20 +151,23 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
             <button
               type="button"
               onClick={onOpenCommand}
-              aria-label="Open command palette"
-              className="hidden h-9 items-center gap-1.5 rounded-xl border border-neutral-200 bg-white px-2.5 text-ink-gray transition-colors hover:border-neutral-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-500 dark:hover:border-neutral-600 dark:hover:text-neutral-200 lg:flex"
+              aria-label="Search portfolio"
+              aria-keyshortcuts="Meta+K Control+K"
+              className="hidden h-11 items-center gap-2 rounded-xl border border-neutral-200 bg-white px-2.5 text-ink-gray transition-colors hover:border-neutral-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-500 dark:hover:border-neutral-600 dark:hover:text-neutral-200 xl:flex"
             >
-              <SquareTerminal className="h-4 w-4" aria-hidden="true" />
+              <Search className="h-4 w-4" aria-hidden="true" />
               <kbd className="text-[11px] font-medium">⌘K</kbd>
             </button>
 
             {/* Mobile hamburger */}
             <button
               type="button"
+              ref={menuRef}
               onClick={() => setMobileOpen((o) => !o)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-neutral-200 bg-white text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-white lg:hidden"
+              aria-controls="mobile-navigation"
+              className="icon-button xl:hidden"
             >
               {mobileOpen ? (
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -193,20 +179,27 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
         </div>
 
         {/* Mobile menu */}
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={() => {
+          if (pendingSection.current) {
+            scrollToSection(pendingSection.current)
+            pendingSection.current = null
+          }
+        }}>
           {mobileOpen ? (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="overflow-hidden border-t border-neutral-200/80 dark:border-[#262626] lg:hidden"
+              id="mobile-navigation"
+              className="max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain border-t border-neutral-200/80 dark:border-[#262626] xl:hidden"
             >
               <ul className="space-y-1 px-5 py-4">
                 {LINKS.map((link) => (
                   <li key={link.id}>
                     <a
                       href={`#${link.id}`}
+                      aria-current={active === link.id ? 'true' : undefined}
                       onClick={(e) => {
                         e.preventDefault()
                         scrollTo(link.id)
@@ -227,7 +220,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
-                    className="text-ink-gray hover:text-ink-900 dark:text-neutral-400 dark:hover:text-white"
+                    className="icon-button"
                   >
                     <Github className="h-5 w-5" aria-hidden="true" />
                   </a>
@@ -236,7 +229,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
-                    className="text-ink-gray hover:text-ink-900 dark:text-neutral-400 dark:hover:text-white"
+                    className="icon-button"
                   >
                     <Linkedin className="h-5 w-5" aria-hidden="true" />
                   </a>

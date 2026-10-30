@@ -12,11 +12,11 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="section-pad bg-[#F8FAFC] py-20 transition-colors md:py-28 dark:bg-[#0A0A0A]"
+      className="section-pad bg-[#F8FAFC] py-16 transition-colors md:py-24 dark:bg-[#0A0A0A]"
     >
       <div className="container-x relative">
         <SectionTitle
-          eyebrow="Projects"
+          eyebrow="Selected work"
           title="Selected Projects"
           description="Two end-to-end systems built around real operational workflows, real-time data, and measurable engineering depth."
         />
@@ -26,7 +26,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="space-y-20 md:space-y-28"
+          className="space-y-14 md:space-y-20"
         >
           {projects.map((project, index) => (
             <ProjectCard

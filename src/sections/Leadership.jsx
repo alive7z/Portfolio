@@ -28,15 +28,15 @@ const ACTIVITIES = [
 
 export default function Leadership() {
   return (
-    <section id="leadership" className="section-pad py-20 md:py-28">
+    <section id="leadership" className="section-pad py-16 md:py-24">
       <div className="container-x">
         <SectionTitle
-          eyebrow="Leadership"
+          eyebrow="Beyond the code"
           title="Leadership"
           description="Building technical communities and learning culture on campus."
         />
 
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           {/* Main leadership card */}
           <motion.article
             variants={fadeUp}

@@ -6,10 +6,10 @@ import { stagger, viewportOnce } from '../lib/motion'
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="section-pad py-20 md:py-28">
+    <section id="achievements" className="section-pad py-16 md:py-24">
       <div className="container-x">
         <SectionTitle
-          eyebrow="Achievements"
+          eyebrow="Milestones"
           title="Achievements"
           description="Recognition from national hackathons, cloud skill challenges, and campus programs."
         />

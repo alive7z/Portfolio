@@ -5,7 +5,7 @@ import { fadeUp, stagger, viewportOnce } from '../lib/motion'
 
 export default function About() {
   return (
-    <section id="about" className="section-pad py-20 md:py-28">
+    <section id="about" className="section-pad py-16 md:py-24">
       <div className="container-x">
         <SectionTitle eyebrow="About" title="About Me" />
 

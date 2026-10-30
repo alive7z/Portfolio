@@ -22,13 +22,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="section-pad relative overflow-hidden py-20 md:py-28"
+      className="section-pad relative isolate overflow-hidden py-16 md:py-24"
     >
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-accent-50/40 to-transparent dark:via-accent-500/[0.03]"
       />
-      <div className="container-x">
+      <div className="container-x rounded-3xl border border-neutral-200/80 bg-[#F8FAFC] px-5 py-12 sm:px-10 sm:py-16 dark:border-[#262626] dark:bg-[#0F0F0F]">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -38,13 +38,13 @@ export default function Contact() {
         >
           <motion.p
             variants={fadeUp}
-            className="text-sm font-semibold text-accent-600 dark:text-accent-400"
+            className="eyebrow"
           >
             What's Next?
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="mt-3 text-3xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-5xl"
+            className="mt-5 text-3xl font-bold leading-[1.12] tracking-[-0.04em] text-ink-900 dark:text-white sm:text-5xl"
           >
             Let's build something meaningful.
           </motion.h2>
@@ -88,12 +88,12 @@ export default function Contact() {
               type="button"
               onClick={copyEmail}
               aria-live="polite"
-              className="group inline-flex max-w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-ink-gray transition-all hover:border-accent-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-accent-600/50 dark:hover:text-white sm:px-5"
+              className="group inline-flex max-w-full items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white px-3 py-3 text-xs sm:gap-3 sm:text-sm font-medium text-ink-gray transition-all hover:border-accent-300 hover:text-ink-900 dark:border-[#303030] dark:bg-surface-dark dark:text-neutral-400 dark:hover:border-accent-600/50 dark:hover:text-white sm:px-5"
             >
-              <Mail className="h-4 w-4 text-accent-600 dark:text-accent-400" aria-hidden="true" />
-              {EMAIL}
+              <Mail className="h-4 w-4 shrink-0 text-accent-600 dark:text-accent-400" aria-hidden="true" />
+              <span className="min-w-0 break-all">{EMAIL}</span>
               <span
-                className={`flex h-6 w-6 items-center justify-center rounded-md transition-colors ${
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors ${
                   copied
                     ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400'
                     : 'text-ink-gray group-hover:text-accent-600 dark:text-neutral-500 dark:group-hover:text-accent-400'

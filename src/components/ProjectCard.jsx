@@ -61,7 +61,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
     <motion.article
       variants={fadeUp}
       viewport={viewportOnce}
-      className="grid min-w-0 items-start gap-8 lg:grid-cols-2 lg:gap-12"
+      className="grid min-w-0 items-start gap-8 rounded-3xl border border-neutral-200/80 bg-white p-5 shadow-card sm:p-8 lg:grid-cols-2 lg:gap-10 dark:border-[#262626] dark:bg-surface-dark"
     >
       {/* Visual */}
       <motion.div
@@ -103,7 +103,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
 
         {project.metrics ? (
           <div className="mt-7">
-            <div className="grid grid-cols-2 items-stretch gap-3 sm:grid-cols-4">
+            <div className={`grid grid-cols-2 items-stretch gap-3 ${project.metrics.length === 3 ? 'sm:grid-cols-3' : 'xl:grid-cols-4'}`}>
               {project.metrics.map((metric, i) => (
                 <MetricCard
                   key={metric.label}
@@ -126,7 +126,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-blue-glow transition-colors hover:bg-accent-700 sm:w-auto"
+              className="group/btn inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-blue-glow transition-colors hover:bg-accent-700 sm:w-auto"
             >
               View Live
               <ArrowUpRight
@@ -141,7 +141,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${project.live ? 'border border-neutral-200 bg-white text-ink-900 shadow-none hover:border-accent-300 hover:bg-white dark:border-[#303030] dark:bg-transparent dark:text-neutral-100 dark:hover:border-accent-600/50' : 'bg-accent-600 text-white shadow-blue-glow hover:bg-accent-700'} group/btn inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors sm:w-auto`}
+              className={`${project.live ? 'border border-neutral-200 bg-white text-ink-900 shadow-none hover:border-accent-300 hover:bg-white dark:border-[#303030] dark:bg-transparent dark:text-neutral-100 dark:hover:border-accent-600/50' : 'bg-accent-600 text-white shadow-blue-glow hover:bg-accent-700'} group/btn inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors sm:w-auto`}
             >
               <Github className="h-4 w-4" aria-hidden="true" />
               View GitHub
@@ -155,7 +155,7 @@ export default function ProjectCard({ project, index, onOpenDetails }) {
           <button
             type="button"
             onClick={() => onOpenDetails(project)}
-            className="group/explore inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 transition-colors hover:border-accent-300 hover:text-accent-700 dark:border-[#303030] dark:bg-transparent dark:text-neutral-100 dark:hover:border-accent-600/50 dark:hover:text-accent-300 sm:w-auto"
+            className="group/explore inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-semibold text-ink-900 transition-colors hover:border-accent-300 hover:text-accent-700 dark:border-[#303030] dark:bg-transparent dark:text-neutral-100 dark:hover:border-accent-600/50 dark:hover:text-accent-300 sm:w-auto"
           >
             {project.slug === 'ibvap' ? 'Explore Project' : 'Project Details'}
             <ChevronRight
