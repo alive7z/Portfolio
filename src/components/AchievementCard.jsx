@@ -1,13 +1,25 @@
 import { motion } from 'framer-motion'
-import { fadeUp, viewportOnce } from '../lib/motion'
+import { fadeUp } from '../lib/motion'
 
 export default function AchievementCard({ achievement, index }) {
   return (
     <motion.article
       variants={fadeUp}
       transition={{ delay: index * 0.06 }}
-      className="card-surface group flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-300 hover:shadow-card-hover dark:hover:border-accent-600/40"
+      className={`card-surface group flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-300 hover:shadow-card-hover dark:hover:border-accent-600/40 ${achievement.image ? 'gap-6 sm:col-span-2 md:flex-row md:items-center' : ''}`}
     >
+      {achievement.image ? (
+        <img
+          src={achievement.image}
+          alt={achievement.imageAlt}
+          width={4096}
+          height={2738}
+          loading="lazy"
+          decoding="async"
+          className="h-auto w-full rounded-xl md:w-1/2"
+        />
+      ) : null}
+      <div className="min-w-0 flex-1">
       <div className="mb-5 flex items-center justify-between">
         <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-colors group-hover:bg-accent-600 group-hover:text-white dark:bg-accent-500/10 dark:text-accent-400 dark:group-hover:bg-accent-600 dark:group-hover:text-white">
           <achievement.icon className="h-5 w-5" aria-hidden="true" />
@@ -24,6 +36,7 @@ export default function AchievementCard({ achievement, index }) {
       <p className="mt-1.5 text-sm leading-relaxed text-ink-gray dark:text-neutral-400">
         {achievement.description}
       </p>
+      </div>
     </motion.article>
   )
 }

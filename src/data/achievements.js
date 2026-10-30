@@ -1,6 +1,15 @@
 import { Trophy, Flame, Code2, ShieldCheck, BookOpen, Cloud } from 'lucide-react'
+import graphiteTeam from '../assets/achievements/graphite-26-team.jpg'
 
 export const achievements = [
+  {
+    title: "Graphite’26 Hackathon",
+    description: 'Team DevX secured 1st Runner-Up at Graphic Era Hill University’s 24-hour hackathon with AccessLens, a web accessibility auditor that explains issues, highlights affected elements, and suggests ready-to-use code fixes. Built a browser extension and published an npm package for audits and reports, while exploring WCAG Level AAA checks.',
+    icon: Trophy,
+    badge: '1st Runner-Up',
+    image: graphiteTeam,
+    imageAlt: 'Team DevX receiving the 1st Runner-Up award at the Graphite’26 hackathon at Graphic Era Hill University',
+  },
   {
     title: 'Smart India Hackathon 2026',
     description: 'Shortlisted with IBVAP',
