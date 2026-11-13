@@ -4,7 +4,7 @@ import graphiteTeam from '../assets/achievements/graphite-26-team.jpg'
 export const achievements = [
   {
     title: "Graphite’26 Hackathon",
-    description: 'Our team, Dev X, secured 1st Runner-Up at Graphic Era Hill University’s 24-hour hackathon with AccessLens, a web accessibility auditor that explains issues, highlights affected elements, and suggests ready-to-use code fixes. We also built a browser extension and published an npm package for audits and reports, while exploring WCAG Level AAA checks.',
+    description: 'Our team, Dev X, secured 1st Runner-Up at Graphic Era Hill University’s 24-hour hackathon with AccessLens, now Sarvya, a web accessibility auditor that explains issues, highlights affected elements, and suggests rule-based code fixes. The project also includes a Chrome/Edge extension and a local CLI for audits and reports, available from source with publication pending.',
     icon: Trophy,
     badge: '1st Runner-Up',
     image: graphiteTeam,

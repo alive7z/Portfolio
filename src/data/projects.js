@@ -1,6 +1,7 @@
 import ibvapDashboard from '../assets/projects/ibvap-dashboard.png'
 import ibvapDashboardLight from '../assets/projects/ibvap-dashboard-light.png'
 import pratyayaDashboard from '../assets/projects/pratyaya-dashboard.svg'
+import sarvyaDashboard from '../assets/projects/sarvya-dashboard.png'
 
 export const projects = [
   {
@@ -102,5 +103,57 @@ export const projects = [
       { value: '3', suffix: '', label: 'Payment Operations' },
     ],
     metricNote: 'Vitest results reported in the resume; includes authorization, capture, and partial refunds',
+  },
+  {
+    slug: 'sarvya',
+    title: 'Sarvya',
+    subtitle: 'Web Accessibility Auditing Platform',
+    role: 'Full-Stack Developer',
+    description:
+      'Built a web accessibility auditing toolkit using Playwright and axe-core to scan single or multiple pages, detect WCAG-related issues, and review findings in a React dashboard. Redis and BullMQ power background scans and scheduled monitoring, with retries, live progress via SSE, and saved scan comparisons to track new issues.',
+    tagline:
+      'An accessibility workspace that helps developers find, understand, track, and review issues across browser and CI workflows.',
+    problem:
+      'Accessibility findings are difficult to act on without page context or a way to track regressions. Developers need clear issue details, reviewable suggestions, and repeatable checks throughout their workflow.',
+    solution:
+      'Sarvya combines single-page and same-origin multi-page audits with severity filters, affected-element inspection, scan comparisons, and scheduled monitoring. A Chrome/Edge extension supports local page audits, while an npm CLI generates JSON, HTML, and CSV reports and runs CI checks. A GitHub OAuth workflow lets developers review fixes and open draft pull requests. Originally developed as AccessLens, the project earned 1st Runner-Up at GRAPHITE’26.',
+    architecture:
+      'A React and Vite workspace connects to an Express API. Redis and BullMQ coordinate separate Playwright/axe-core scan and monitoring workers, while atomic JSON files preserve audit history on shared storage. Server-Sent Events stream progress with polling fallback. A local CLI supports CI thresholds, and a Manifest V3 extension audits active browser tabs. The application runs locally; public hosting and package/store publication are pending.',
+    technologies: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'Playwright',
+      'axe-core',
+      'Redis',
+      'BullMQ',
+      'Vite',
+      'Tailwind CSS',
+      'Docker',
+    ],
+    github: 'https://github.com/alive7z/Sarvya',
+    live: null,
+    displayUrl: 'Sarvya · accessibility auditing workspace',
+    image: sarvyaDashboard,
+    darkImage: null,
+    imageAlt: 'Sarvya audit workspace showing website scan controls and sample accessibility score, total issues, critical issues, and verified fixes',
+    features: [
+      'Single-page and multi-page accessibility audits',
+      'Severity filters and affected-element inspection',
+      'Background scans with retries and live SSE progress',
+      'Scan history and regression comparisons',
+      'Daily and weekly monitoring',
+      'Rule-based fix suggestions and snippet verification',
+      'GitHub OAuth, fix review, and draft pull requests',
+      'JSON, HTML, CSV, and printable reports',
+      'Local npm CLI with CI-friendly exit codes',
+      'Chrome/Edge Manifest V3 extension',
+    ],
+    metrics: [
+      { value: '50', suffix: '', label: 'Page Crawl Limit' },
+      { value: '3', suffix: '', label: 'Maximum Crawl Depth' },
+      { value: '3', suffix: '', label: 'Interfaces: Web, CLI, Extension' },
+    ],
+    metricNote: 'Configured crawl limits; CLI and extension are available from source, with publication pending.',
   },
 ]

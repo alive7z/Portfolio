@@ -18,7 +18,7 @@ export default function Projects() {
         <SectionTitle
           eyebrow="Selected work"
           title="Selected Projects"
-          description="Two end-to-end systems built around real operational workflows, real-time data, and measurable engineering depth."
+          description="End-to-end systems built around real operational workflows, reliable infrastructure, and accessible experiences."
         />
 
         <motion.div
