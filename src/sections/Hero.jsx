@@ -111,7 +111,7 @@ export default function Hero() {
             </Button>
             <Button
               variant="secondary"
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1BKx02EideBBEqvJVjZWGA2qzfkAa8B_O/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               icon={FileText}
