@@ -138,7 +138,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
 
             <Button
               variant="primary"
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1BKx02EideBBEqvJVjZWGA2qzfkAa8B_O/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden px-4 py-2 md:inline-flex"
@@ -234,7 +234,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
                     <Linkedin className="h-5 w-5" aria-hidden="true" />
                   </a>
                   <a
-                    href="/resume.pdf"
+                    href="https://drive.google.com/file/d/1BKx02EideBBEqvJVjZWGA2qzfkAa8B_O/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-auto inline-flex items-center gap-1 rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"

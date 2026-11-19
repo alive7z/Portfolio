@@ -30,7 +30,7 @@ const ITEMS = [
   { id: 'github', label: 'GitHub', hint: 'Open GitHub profile', icon: Github, action: 'external', url: 'https://github.com/alive7z' },
   { id: 'linkedin', label: 'LinkedIn', hint: 'Open LinkedIn profile', icon: Linkedin, action: 'external', url: 'https://www.linkedin.com/in/sumit-singh-bagdwal' },
   { id: 'email', label: 'Email', hint: 'Open email', icon: Mail, action: 'external', url: 'mailto:sumitsbagdwal@gmail.com' },
-  { id: 'resume', label: 'Resume', hint: 'Open resume (PDF)', icon: FileText, action: 'external', url: '/resume.pdf' },
+  { id: 'resume', label: 'Resume', hint: 'Open resume (PDF)', icon: FileText, action: 'external', url: 'https://drive.google.com/file/d/1BKx02EideBBEqvJVjZWGA2qzfkAa8B_O/view?usp=sharing' },
   { id: 'theme', label: 'Toggle Theme', hint: 'Switch light / dark mode', icon: SunMoon, action: 'theme' },
 ]
 
